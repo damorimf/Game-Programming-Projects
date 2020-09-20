@@ -1,0 +1,2 @@
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 1\Debug\Project 1.exe
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 1\Debug\Project 1.pdb
