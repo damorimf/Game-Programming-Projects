@@ -14,6 +14,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include "time.h"
+
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
 
@@ -26,13 +28,13 @@ float verticesPaddle[] = { -0.25, -1.00, 0.25, -1.00, 0.25, 1.00,   -0.25, -1.00
 glm::vec3 player1_position = glm::vec3(-4.75f, 0.0f, 0.0f);
 // Don’t go anywhere (yet).
 glm::vec3 player1_movement = glm::vec3(0.0f, 0.0f, 0.0f);
-float player1_speed = 5.0f;
+float player1_speed = 7.0f;
 
 // Start at 0, 0, 0
 glm::vec3 player2_position = glm::vec3(4.75f, 0.0f, 0.0f);
 // Don’t go anywhere (yet).
 glm::vec3 player2_movement = glm::vec3(0.0f, 0.0f, 0.0f);
-float player2_speed = 5.0f;
+float player2_speed = 7.0f;
 
 float verticesBall[] = { -0.25, -0.25, 0.25, -0.25, 0.25, 0.25,   -0.25, -0.25, 0.25, 0.25, -0.25, 0.25 };
 bool ball_on = false;
@@ -41,7 +43,7 @@ bool ball_on = false;
 glm::vec3 ball_position = glm::vec3(0.0f, 0.0f, 0.0f);
 // Don’t go anywhere (yet).
 glm::vec3 ball_movement = glm::vec3(0.0f, 0.0f, 0.0f);
-float ball_speed = 3.0f;
+float ball_speed = 5.0f;
 
 //GLuint player1TextureID;
 //GLuint player2TextureID;
@@ -104,7 +106,23 @@ void Initialize() {
     player1TextureID = LoadTexture("PongBoard.png");
     player2TextureID = LoadTexture("PongBoard.png");
     */
-    ball_movement = glm::vec3(1.0f, 1.0f, 0.0f);
+
+    srand(time(0));
+    int direction = rand() % 4;
+    switch (direction) {
+        case 0:
+            ball_movement = glm::vec3(1.0f, 1.0f, 0.0f);
+            break;
+        case 1:
+            ball_movement = glm::vec3(1.0f, -1.0f, 0.0f);
+            break;
+        case 2:
+            ball_movement = glm::vec3(-1.0f, 1.0f, 0.0f);
+            break;
+        case 3:
+            ball_movement = glm::vec3(-1.0f, -1.0f, 0.0f);
+            break;
+    }
 }
 
 void ProcessInput() {
@@ -216,7 +234,10 @@ void Update() {
         player2Matrix = glm::mat4(1.0f);
         player2Matrix = glm::translate(player2Matrix, player2_position);
         if (ball_on) {
-            if (!(ball_position.y <= 3.5f && ball_position.y >= -3.5f)) {
+            if (!(ball_position.y < 3.5f) && ball_movement.y > 0) {
+                ball_movement = glm::vec3(ball_movement.x, -ball_movement.y, 0.0f);
+            }
+            if (!(ball_position.y > -3.5f) && ball_movement.y < 0) {
                 ball_movement = glm::vec3(ball_movement.x, -ball_movement.y, 0.0f);
             }
             if (CollisionDetect(player1_position, verticesPaddle, ball_position, verticesBall) && ball_movement.x < 0) {
