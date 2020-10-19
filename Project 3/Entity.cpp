@@ -98,12 +98,12 @@ void Entity::Update(float deltaTime, Entity *platforms, int platformCount)
     }
 
     for (int i = 0; i < platformCount; i++) {
-        if (CheckCollision(&platforms[27]) || CheckCollision(&platforms[28])) {
-            status = 2;
+        if (CheckCollision(&platforms[i]) && i != 27 && i != 28) {
+            status = 1;
             return;
         }
-        else if (CheckCollision(&platforms[i])) {
-            status = 1;
+        else if ((CheckCollision(&platforms[i]))) {
+            status = 2;
             return;
         }
     }

@@ -147,7 +147,8 @@ void Initialize() {
     state.player->acceleration = glm::vec3(0, -0.1f, 0);
     state.player->speed = 1.0f;
     state.player->textureID = LoadTexture("ship.png");
-    state.player->width = 0.7f;
+    state.player->width = 0.6f;
+    state.player->height = 1.0f;
     /*
     state.player->animRight = new int[4] {3, 7, 11, 15};
     state.player->animLeft = new int[4] {1, 5, 9, 13};
