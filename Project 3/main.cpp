@@ -111,7 +111,7 @@ void DrawText(ShaderProgram* program, GLuint fontTextureID, std::string text,
 
 void Initialize() {
     SDL_Init(SDL_INIT_VIDEO);
-    displayWindow = SDL_CreateWindow("Lunar Lander Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
+    displayWindow = SDL_CreateWindow("TARDIS Lander Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
     
@@ -132,7 +132,7 @@ void Initialize() {
     
     glUseProgram(program.programID);
     
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(0.898f, 0.320f, 0.0f, 1.0f);
     glEnable(GL_BLEND);
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -147,6 +147,7 @@ void Initialize() {
     state.player->acceleration = glm::vec3(0, -0.1f, 0);
     state.player->speed = 1.0f;
     state.player->textureID = LoadTexture("ship.png");
+    state.player->width = 0.7f;
     /*
     state.player->animRight = new int[4] {3, 7, 11, 15};
     state.player->animLeft = new int[4] {1, 5, 9, 13};
@@ -164,7 +165,7 @@ void Initialize() {
     state.platforms = new Entity[PLATFORM_COUNT];
     
 
-    GLuint platformTextureID = LoadTexture("stone.png");
+    GLuint platformTextureID = LoadTexture("magma.png");
     
     int leftWall[8] = { 0, 1, 2, 3, 4, 5, 6, 7 };
     int rightWall[8] = { 8, 9, 10, 11, 12, 13, 14, 15 };
@@ -203,7 +204,7 @@ void Initialize() {
         state.platforms[platform2[i]].Update(0, NULL, 0);
     }
 
-    GLuint landingPadTextureID = LoadTexture("snow.png");
+    GLuint landingPadTextureID = LoadTexture("stone.png");
     int landingPad[2] = { 27, 28 };
 
     for (int i = 0; i < 2; i++) {

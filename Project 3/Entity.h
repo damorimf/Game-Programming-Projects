@@ -18,8 +18,8 @@ public:
     glm::vec3 acceleration;
     glm::vec3 velocity;
 
-    int width = 1;
-    int height = 1;
+    float width = 1;
+    float height = 1;
 
     float speed;
     int status;
