@@ -1,0 +1,8 @@
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 1\Debug\Project 1.exe
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 1\Debug\Project 1.pdb
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 2\Debug\Project 2.exe
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 2\Debug\Project 2.pdb
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 3\Debug\Project 3.exe
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 3\Debug\Project 3.pdb
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 4\Debug\Project 4.exe
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 4\Debug\Project 4.pdb
