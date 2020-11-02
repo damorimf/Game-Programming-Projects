@@ -173,12 +173,12 @@ void Initialize() {
     state.enemies[0].aiType = WALKER;
     state.enemies[0].textureID = LoadTexture("dalek.png");
     state.enemies[0].position = glm::vec3(2.5f, -1.25f, 0.0f);
-    state.enemies[0].speed = 0.5f;
+    state.enemies[0].speed = 1.0f;
     state.enemies[0].movement.x = 1.0f;
     
     state.enemies[1].aiType = SNEAKY;
     state.enemies[1].textureID = LoadTexture("potato.png");
-    state.enemies[1].position = glm::vec3(0.75f, -2.25f, 0.0f);
+    state.enemies[1].position = glm::vec3(0.5f, -2.25f, 0.0f);
     state.enemies[1].height = 0.5f;
     state.enemies[1].width = 0.5f;
     state.enemies[1].speed = 1.0f;
@@ -186,9 +186,9 @@ void Initialize() {
     state.enemies[2].aiType = JUMPER;
     state.enemies[2].textureID = LoadTexture("cyberman2.png");
     state.enemies[2].position = glm::vec3(3.5f, 2.5f, 0);
-    state.enemies[2].speed = 1.0f;
+    state.enemies[2].speed = 2.25f;
     state.enemies[2].movement.x = -1.0f;
-    state.enemies[2].jumpPower = 5.0f;
+    state.enemies[2].jumpPower = 6.0f;
 
     //Initialize Platforms
 
@@ -214,7 +214,7 @@ void Initialize() {
 
     int plat1[5] = { 23, 24, 25, 26, 27 };
     for (int i = 0; i < 5; i++) {
-        state.platforms[plat1[i]].position = glm::vec3(1.5f + i, -2.25f, 0);
+        state.platforms[plat1[i]].position = glm::vec3(1.25f + i, -2.25f, 0);
     }
 
     int plat2[4] = { 28, 29, 30, 31 };
