@@ -192,7 +192,7 @@ void Entity::Update(float deltaTime, Entity* playerEnemy, int enemyCount, Entity
     }
 
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, position);    
+    modelMatrix = glm::translate(modelMatrix, position);
 }
 
 void Entity::DrawSpriteFromTextureAtlas(ShaderProgram *program, GLuint textureID, int index)

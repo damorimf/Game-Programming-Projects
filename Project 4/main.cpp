@@ -373,7 +373,7 @@ void Render() {
         DrawText(&program, LoadTexture("font.png"), "You win!", 1.0f, -0.5f, glm::vec3(-2.0f, 0, 0));
     }
     else if (state.player->status == 1) {
-        DrawText(&program, LoadTexture("font.png"), "You loose!", 1.0f, -0.5f, glm::vec3(-2.5f, 0, 0));
+        DrawText(&program, LoadTexture("font.png"), "You lose!", 1.0f, -0.5f, glm::vec3(-2.5f, 0, 0));
     }
     
 
