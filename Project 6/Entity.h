@@ -14,7 +14,7 @@
 #include "Map.h"
 
 enum EntityType { PLAYER, ENEMY, SWORD };
-enum AIType { CHASER, CRAZY };
+enum AIType { CHASER, CRAZY, BOSS };
 enum AIState { IDLE, WALKING, ATTACKING};
 
 class Entity {
@@ -84,4 +84,5 @@ public:
     void AI(Entity* player, Entity* objects, int objectCount);
     void AIChaser(Entity* player, Entity* objects, int objectCount);
     void AICrazy(Entity* player, Entity* objects, int objectCount);
+    void AIBoss(Entity* player, Entity* objects, int objectCount);
 };

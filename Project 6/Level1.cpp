@@ -5,8 +5,6 @@
 
 #define LEVEL1_ENEMY_COUNT 3
 
-int currEnemyCount = 0;
-
 unsigned int level1_data[] =
 {
  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -39,8 +37,8 @@ void Level1::Initialize() {
     state.player->acceleration = glm::vec3(0, 0, 0);
     state.player->speed = 4.0f;
     state.player->textureID = Util::LoadTexture("PlayerSprites.png");
-    state.player->width = 0.5f;
-    state.player->height = 0.5f;
+    state.player->width = 0.4f;
+    state.player->height = 0.4f;
 
     state.player->animDown = new int[3]{ 2, 0, 1 };
     state.player->animLeft = new int[3]{ 5, 3, 4 };
@@ -104,9 +102,10 @@ void Level1::Update(float deltaTime) {
             state.nextScene = 1;
         }
         if (state.player->kills == LEVEL1_ENEMY_COUNT) {
-            state.player->status = 2;
+            //state.player->status = 2;
+            state.nextScene = 2;
         }
-    }	
+    }
 }
 
 void Level1::Render(ShaderProgram* program) {
@@ -118,5 +117,5 @@ void Level1::Render(ShaderProgram* program) {
 
     for (int i = 0; i < LEVEL1_ENEMY_COUNT; i++) {
         state.enemies[i].Render(program);
-    }        
+    }
 }

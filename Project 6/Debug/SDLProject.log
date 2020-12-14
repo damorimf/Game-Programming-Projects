@@ -1,3 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project 1.vcxproj, Project 2.vcxproj, Project 3.vcxproj, Project 4.vcxproj, Project 5.vcxproj, SDLProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Level1.cpp
+  Util.cpp
+C:\Users\Daniel\Desktop\Game Programming Projects\Project 6\Util.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
   SDLProject.vcxproj -> C:\Users\Daniel\Desktop\Game Programming Projects\Project 6\Debug\Project 6.exe

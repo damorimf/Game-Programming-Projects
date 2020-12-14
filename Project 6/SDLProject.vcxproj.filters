@@ -39,6 +39,15 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShaderProgram.h">
@@ -60,6 +69,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level4.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

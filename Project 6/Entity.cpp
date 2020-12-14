@@ -184,6 +184,42 @@ void Entity::AICrazy(Entity* player, Entity* objects, int objectCount) {
 
 }
 
+void Entity::AIBoss(Entity* player, Entity* objects, int objectCount) {
+    if (abs(position.x - player->position.x) <= 0.5f) {
+        if (position.x > player->position.x) {
+            movement.x = -1.0f;
+        }
+        if (position.x < player->position.x) {
+            movement.x = 1.0f;
+        }
+        if (position.y > player->position.y) {
+            movement.y = -1.0f;
+        }
+        if (position.y < player->position.y) {
+            movement.y = 1.0f;
+        }
+    }
+    else if (abs(position.y - player->position.y) <= 0.5f) {
+        if (position.x > player->position.x) {
+            movement.x = -1.0f;
+        }
+        if (position.x < player->position.x) {
+            movement.x = 1.0f;
+        }
+        if (position.y > player->position.y) {
+            movement.y = -1.0f;
+        }
+        if (position.y < player->position.y) {
+            movement.y = 1.0f;
+        }
+    }
+    else {
+        movement.x = 0.0f;
+        movement.y = 0.0f;
+    }
+    
+}
+
 void Entity::AI(Entity* player, Entity* objects, int objectCount) {
     switch (aiType) {
         case CHASER:
@@ -191,6 +227,9 @@ void Entity::AI(Entity* player, Entity* objects, int objectCount) {
             break;
         case CRAZY:
             AICrazy(player, objects, objectCount);
+            break;
+        case BOSS:
+            AIBoss(player, objects, objectCount);
             break;
     }
 }
@@ -251,16 +290,24 @@ void Entity::Update(float deltaTime, Entity* player, Entity* sword, Entity* obje
     if (entityType == ENEMY) {
         SwordCollision(sword);
 
-        if (collidedEntity == sword && player->swing) {
+        if (collidedEntity == sword && player->swing && aiType != BOSS && status != 2) {
             isActive = false;
             player->kills++;
+        } 
+        else if (collidedEntity == sword && player->swing && aiType != BOSS && status == 2) {
+            isActive = false;
+        }
+        else if (collidedEntity == sword && player->swing && aiType == BOSS) {
+            player->kills++;
+            player->position = glm::vec3(7, -2, 0);
+            position = glm::vec3(7, -10, 0);
         }
 
         CheckCollisionsY(player, 1);
         CheckCollisionsX(player, 1);
         
         if (collidedEntity == player) {
-            player->status = 1;
+            player->status = -1;
             return;
         }
 
@@ -271,11 +318,7 @@ void Entity::Update(float deltaTime, Entity* player, Entity* sword, Entity* obje
     
     if (entityType == PLAYER) {
         CheckCollisionsY(objects, objectCount);
-        CheckCollisionsX(objects, objectCount);        
-        if (collidedEntity) {
-            status = 1;
-            return;
-        }        
+        CheckCollisionsX(objects, objectCount);       
     }
 
     if (entityType == SWORD) {

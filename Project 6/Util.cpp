@@ -10,7 +10,6 @@ GLuint Util::LoadTexture(const char* filePath) {
 
 	if (image == NULL) {
 		std::cout << "Unable to load image. Make sure the path is correct\n";
-		assert(false);
 	}
 
 	GLuint textureID;
@@ -77,3 +76,4 @@ void Util::DrawText(ShaderProgram* program, GLuint fontTexture, std::string text
 	glDisableVertexAttribArray(program->positionAttribute);
 	glDisableVertexAttribArray(program->texCoordAttribute);
 }
+

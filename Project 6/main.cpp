@@ -19,6 +19,9 @@
 #include "Scene.h"
 #include "MainMenu.h"
 #include "Level1.h"
+#include "Level2.h"
+#include "Level3.h"
+#include "Level4.h"
 
 #include <vector>
 
@@ -29,7 +32,7 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 Scene* currentScene;
-Scene* sceneList[4];
+Scene* sceneList[5];
 int currentSceneIndex = 0;
 int lives = 3;
 
@@ -77,8 +80,9 @@ void Initialize() {
 
     sceneList[0] = new MainMenu();
     sceneList[1] = new Level1();
-    //sceneList[2] = new Level2();
-    //sceneList[3] = new Level3();
+    sceneList[2] = new Level2();
+    sceneList[3] = new Level3();
+    sceneList[4] = new Level4();
     SwitchToScene(sceneList[0]);    
 }
 
@@ -240,49 +244,172 @@ void Render() {
     else {
         currentScene->Render(&program);
     }
-    /*
-    if (currentSceneIndex != 0 && currentScene->state.player->status != 2) {
-        if (currentScene->state.player->position.x > 5 && currentScene->state.player->position.x < 8) {
-            switch (lives) {
-                case 1:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 1", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -0.5f, 0));
-                    break;
-                case 2:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 2", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -0.5f, 0));
-                    break;
-                case 3:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 3", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -0.5f, 0));
-                    break;
-            }            
+    if (currentSceneIndex == 4) {
+        if (currentScene->state.player->position.x > 5.25 && currentScene->state.player->position.x < 7.75 && -currentScene->state.player->position.y > 4 && -currentScene->state.player->position.y < 9) {
+            Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(currentScene->state.player->position.x + 1, currentScene->state.player->position.y + 3.25f, 0));
         }
-        else if (currentScene->state.player->position.x > 8) {
-            switch (lives) {
-                case 1:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 1", 1.0f, -0.5f, glm::vec3(4, -0.5f, 0));
-                    break;
-                case 2:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 2", 1.0f, -0.5f, glm::vec3(4, -0.5f, 0));
-                    break;
-                case 3:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 3", 1.0f, -0.5f, glm::vec3(4, -0.5f, 0));
-                    break;
+        else if (currentScene->state.player->position.x > 7.75) {
+            if (-currentScene->state.player->position.y > 9) {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(7.75 + 1, -9 + 3.25f, 0));
+            }
+            else if (-currentScene->state.player->position.y < 4) {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(7.75 + 1, -4 + 3.25f, 0));
+            }
+            else {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(7.75 + 1, currentScene->state.player->position.y + 3.25f, 0));
             }
         }
-        else {
-            switch (lives) {
-                case 1:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 1", 1.0f, -0.5f, glm::vec3(1, -0.5f, 0));
-                    break;
-                case 2:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 2", 1.0f, -0.5f, glm::vec3(1, -0.5f, 0));
-                    break;
-                case 3:
-                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives: 3", 1.0f, -0.5f, glm::vec3(1, -0.5f, 0));
-                    break;
+        else if (currentScene->state.player->position.x < 5.25) {
+            if (-currentScene->state.player->position.y > 9) {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(5.25 + 1, -9 + 3.25f, 0));
+            }
+            else if (-currentScene->state.player->position.y < 4) {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(5.25 + 1, -4 + 3.25f, 0));
+            }
+            else {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(5.25 + 1, currentScene->state.player->position.y + 3.25f, 0));
+            }
+        }
+        else if (-currentScene->state.player->position.y > 9) {
+            if (currentScene->state.player->position.x > 4 && currentScene->state.player->position.x < 8) {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(currentScene->state.player->position.x + 1, -9 + 3.25f, 0));
+            }
+        }
+        else if (-currentScene->state.player->position.y < 4) {
+            if (currentScene->state.player->position.x > 4 && currentScene->state.player->position.x < 8) {
+                Util::DrawText(&program, Util::LoadTexture("font.png"), "3 Hits to Win", 1.0f, -0.7f, glm::vec3(currentScene->state.player->position.x + 1, -4 + 3.25f, 0));
             }
         }
     }
-    */
+    
+    if (currentSceneIndex != 0 && currentScene->state.player->status != 2) {
+        if (currentScene->state.player->position.x > 5.25 && currentScene->state.player->position.x < 7.75 && -currentScene->state.player->position.y > 4 && -currentScene->state.player->position.y < 9) {
+            switch (lives) {
+                case 1:
+                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, currentScene->state.player->position.y + 3.25f, 0));
+                    break;
+                case 2:
+                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, currentScene->state.player->position.y + 3.25f, 0));
+                    break;
+                case 3:
+                    Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, currentScene->state.player->position.y + 3.25f, 0));
+                    break;
+            }            
+        } 
+        else if (currentScene->state.player->position.x > 7.75) {
+            if (-currentScene->state.player->position.y > 9) {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(7.75 - 4, -9 + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(7.75 - 4, -9 + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(7.75 - 4, -9 + 3.25f, 0));
+                        break;
+                }
+            }
+            else if (-currentScene->state.player->position.y < 4) {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(7.75 - 4, -4 + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(7.75 - 4, -4 + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(7.75 - 4, -4 + 3.25f, 0));
+                        break;
+                }
+            }
+            else {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(7.75 - 4, currentScene->state.player->position.y + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(7.75 - 4, currentScene->state.player->position.y + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(7.75 - 4, currentScene->state.player->position.y + 3.25f, 0));
+                        break;
+                }
+            }
+        }
+        else if (currentScene->state.player->position.x < 5.25) {
+            if (-currentScene->state.player->position.y > 9) {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(5.25 - 4, -9 + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(5.25 - 4, -9 + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(5.25 - 4, -9 + 3.25f, 0));
+                        break;
+                }
+            }
+            else if (-currentScene->state.player->position.y < 4) {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(5.25 - 4, -4 + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(5.25 - 4, -4 + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(5.25 - 4, -4 + 3.25f, 0));
+                        break;
+                }
+            }
+            else {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(5.25 - 4, currentScene->state.player->position.y + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(5.25 - 4, currentScene->state.player->position.y + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(5.25 - 4, currentScene->state.player->position.y + 3.25f, 0));
+                        break;
+                }
+            }
+        }
+        else if (-currentScene->state.player->position.y > 9) {
+            if (currentScene->state.player->position.x > 4 && currentScene->state.player->position.x < 8) {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -9 + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -9 + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -9 + 3.25f, 0));
+                        break;
+                }
+            }
+        }
+        else if (-currentScene->state.player->position.y < 4) {
+            if (currentScene->state.player->position.x > 4 && currentScene->state.player->position.x < 8) {
+                switch (lives) {
+                    case 1:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:1", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -4 + 3.25f, 0));
+                        break;
+                    case 2:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:2", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -4 + 3.25f, 0));
+                        break;
+                    case 3:
+                        Util::DrawText(&program, Util::LoadTexture("font.png"), "Lives:3", 1.0f, -0.5f, glm::vec3(currentScene->state.player->position.x - 4, -4 + 3.25f, 0));
+                        break;
+                }
+            }
+        }
+    }
+    
     SDL_GL_SwapWindow(displayWindow);
 }
 
@@ -298,13 +425,16 @@ int main(int argc, char* argv[]) {
         ProcessInput();
         Update();
         if (currentScene->state.nextScene >= 0) {
+            if (currentScene->state.nextScene == currentSceneIndex + 1) {
+                lives = 3;
+            }
             if (currentScene->state.nextScene == currentSceneIndex) {
                 lives--;
             }
             currentSceneIndex = currentScene->state.nextScene;
             if (lives != 0) {
-                SwitchToScene(sceneList[currentScene->state.nextScene]);
-            }                    
+                SwitchToScene(sceneList[currentScene->state.nextScene]);                
+            }        
         }
         Render();
     }
